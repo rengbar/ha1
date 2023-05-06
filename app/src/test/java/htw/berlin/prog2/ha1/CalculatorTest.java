@@ -41,8 +41,8 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("FristTest")
-    void testClearScreen(){
+    @DisplayName("should display the integer zero after pressed clear")
+    void testClearScreen() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(4);
@@ -52,8 +52,24 @@ class CalculatorTest {
         String expected = "0";
         String actual = calc.readScreen();
 
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
+    }
 
+    @Test
+    @DisplayName("should print 'Error' when diveded by 0")
+    void testDevisionByZero(){
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
     }
 }
 

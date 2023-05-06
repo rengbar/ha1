@@ -115,15 +115,28 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
-        var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
+        double parsedScreen = Double.parseDouble(screen);
+        Object result = switch (latestOperation) {
+            case "+" -> latestValue + parsedScreen;
+            case "-" -> latestValue - parsedScreen;
+            case "x" -> latestValue * parsedScreen;
+            case "/" -> {
+                if (parsedScreen == 0.0) {
+                    yield "Error";
+                } else {
+                    yield latestValue / parsedScreen;
+                }
+            }
             default -> throw new IllegalArgumentException();
         };
-        screen = Double.toString(result);
-        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        if (result instanceof String) {
+            screen = (String) result;
+        } else {
+            Double resultAsDouble = (Double) result;
+            screen = Double.toString(resultAsDouble);
+            if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+            if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        }
     }
 }
