@@ -10,6 +10,7 @@ public class Calculator {
 
     private String screen = "0";
 
+    // test
     private double latestValue;
 
     private String latestOperation = "";
