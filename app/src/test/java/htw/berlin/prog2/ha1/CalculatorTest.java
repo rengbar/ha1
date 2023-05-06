@@ -57,7 +57,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should print 'Error' when diveded by 0")
-    void testDevisionByZero(){
+    void testDevisionByZero() {
 
         Calculator calc = new Calculator();
 
@@ -70,6 +70,16 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void testPressMemorySaveKey() {
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressMemorySaveKey();
+        assertEquals(8.0, calc.getMemoryValue());
     }
 }
 

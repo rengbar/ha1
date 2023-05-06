@@ -11,6 +11,7 @@ public class Calculator {
     private String screen = "0";
     private double latestValue;
     private String latestOperation = "";
+    private double memoryValue;
 
     /**
      * @return den aktuellen Bildschirminhalt als String
@@ -138,5 +139,13 @@ public class Calculator {
             if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
             if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
         }
+    }
+
+    public void pressMemorySaveKey() {
+        memoryValue = Double.parseDouble(screen);
+    }
+
+    public double getMemoryValue() {
+        return memoryValue;
     }
 }
