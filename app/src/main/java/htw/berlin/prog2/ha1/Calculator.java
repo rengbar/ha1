@@ -11,6 +11,7 @@ public class Calculator {
     private String screen = "0";
 
     // test
+    //test2
     private double latestValue;
 
     private String latestOperation = "";
